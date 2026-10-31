@@ -47,7 +47,7 @@ public class EmpleadosController : Controller
     // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Create([Bind("Id,Nombre,Cargo,Edad")] Empleado empleado)
+    public async Task<IActionResult> Create([Bind("Id,Nombre,Cargo,Edad,DepartamentoId,Departamento")] Empleado empleado)
     {
         if (ModelState.IsValid)
         {
@@ -79,7 +79,7 @@ public class EmpleadosController : Controller
     // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Edit(int? id, [Bind("Id,Nombre,Cargo,Edad")] Empleado empleado)
+    public async Task<IActionResult> Edit(int? id, [Bind("Id,Nombre,Cargo,Edad,DepartamentoId,Departamento")] Empleado empleado)
     {
         if (id != empleado.Id)
         {

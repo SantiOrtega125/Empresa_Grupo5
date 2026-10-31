@@ -20,6 +20,28 @@ namespace Empresa.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("Empresa.Models.Departamento", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Ubicacion")
+                        .HasMaxLength(60)
+                        .HasColumnType("nvarchar(60)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Departamento");
+                });
+
             modelBuilder.Entity("Empresa.Models.Empleado", b =>
                 {
                     b.Property<int>("Id")
@@ -33,6 +55,9 @@ namespace Empresa.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
+                    b.Property<int>("DepartamentoId")
+                        .HasColumnType("int");
+
                     b.Property<int>("Edad")
                         .HasColumnType("int");
 
@@ -43,7 +68,25 @@ namespace Empresa.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("DepartamentoId");
+
                     b.ToTable("Empleado");
+                });
+
+            modelBuilder.Entity("Empresa.Models.Empleado", b =>
+                {
+                    b.HasOne("Empresa.Models.Departamento", "Departamento")
+                        .WithMany("Empleados")
+                        .HasForeignKey("DepartamentoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Departamento");
+                });
+
+            modelBuilder.Entity("Empresa.Models.Departamento", b =>
+                {
+                    b.Navigation("Empleados");
                 });
 #pragma warning restore 612, 618
         }

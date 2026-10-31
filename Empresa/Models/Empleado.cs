@@ -18,5 +18,9 @@ namespace Empresa.Models
         [Range(18, 70, ErrorMessage = "La edad debe estar entre 18 a 70")]
         [Display(Name = "Edad")]
         public int Edad { get; set; }
+
+        [Display(Name = "Departamento")]
+        public int DepartamentoId { get; set; }
+        public Departamento? Departamento { get; set; }
     }
 }
