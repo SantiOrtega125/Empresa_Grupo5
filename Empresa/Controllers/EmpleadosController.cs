@@ -1,7 +1,8 @@
 
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Empresa.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 
 public class EmpleadosController : Controller
 {
@@ -15,7 +16,8 @@ public class EmpleadosController : Controller
     // GET: EMPLEADOS
     public async Task<IActionResult> Index()    
     {
-        return View(await _context.Empleado.ToListAsync());
+        var empleados = _context.Empleado.Include(e => e.Departamento);
+        return View(await empleados.ToListAsync());
     }
 
     // GET: EMPLEADOS/Details/5
@@ -39,6 +41,7 @@ public class EmpleadosController : Controller
     // GET: EMPLEADOS/Create
     public IActionResult Create()
     {
+        ViewData["DepartamentoId"] = new SelectList(_context.Departamento, "Id", "Nombre");
         return View();
     }
 
@@ -55,6 +58,7 @@ public class EmpleadosController : Controller
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+        ViewData["DepartamentoId"] = new SelectList(_context.Departamento, "Id", "Nombre", empleado.DepartamentoId);
         return View(empleado);
     }
 

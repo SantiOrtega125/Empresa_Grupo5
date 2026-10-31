@@ -34,7 +34,7 @@
                 @Html.DisplayFor(model => item.Ubicacion)
             </td>
             <td>
-                @Html.DisplayFor(model => item.Empleados)
+                @string.Join(", ", item.Empleados.Select(e => e.Nombre))
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |

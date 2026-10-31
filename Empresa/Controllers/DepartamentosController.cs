@@ -15,7 +15,7 @@ public class DepartamentosController : Controller
     // GET: DEPARTAMENTOS
     public async Task<IActionResult> Index()    
     {
-        return View(await _context.Departamento.ToListAsync());
+        return View(await _context.Departamento.Include(d => d.Empleados).ToListAsync());
     }
 
     // GET: DEPARTAMENTOS/Details/5
