@@ -75,6 +75,7 @@ public class EmpleadosController : Controller
         {
             return NotFound();
         }
+        ViewData["DepartamentoId"] = new SelectList(_context.Departamento, "Id", "Nombre", empleado.DepartamentoId);
         return View(empleado);
     }
 
@@ -110,6 +111,7 @@ public class EmpleadosController : Controller
             }
             return RedirectToAction(nameof(Index));
         }
+        ViewData["DepartamentoId"] = new SelectList(_context.Departamento, "Id", "Nombre", empleado.DepartamentoId);
         return View(empleado);
     }
 
