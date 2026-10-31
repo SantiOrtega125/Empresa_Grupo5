@@ -1,26 +1,103 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Inicio";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<style>
+    .inicio {
+        max-width: 900px;
+        margin: 60px auto;
+        text-align: center;
+    }
 
-<div class="row justify-content-center g-4">
+    .titulo {
+        color: #243447;
+        font-weight: 600;
+        margin-bottom: 15px;
+    }
 
-    <div class="col-md-4">
-        <a asp-controller="Empleados" asp-action="Index"
-           class="btn btn-primary btn-lg w-100 p-4">
-            Empleados
-        </a>
-    </div>
+    .descripcion {
+        color: #6c757d;
+        margin-bottom: 40px;
+    }
 
-    <div class="col-md-4">
-        <a asp-controller="Departamentos" asp-action="Index"
-           class="btn btn-success btn-lg w-100 p-4">
-            Departamentos
-        </a>
+    .tarjeta {
+        background-color: #ffffff;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 30px;
+        height: 100%;
+        transition: 0.2s;
+    }
+
+    .tarjeta:hover {
+        box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    }
+
+    .tarjeta h4 {
+        margin-bottom: 15px;
+        color: #343a40;
+    }
+
+    .tarjeta p {
+        color: #6c757d;
+        min-height: 50px;
+    }
+
+    .tarjeta .btn {
+        width: 100%;
+        padding: 10px;
+        border-radius: 6px;
+    }
+</style>
+
+<div class="inicio">
+
+    <h1 class="titulo">Sistema de Gestión Empresarial</h1>
+
+    <p class="descripcion">
+        Administración de empleados y departamentos
+    </p>
+
+    <div class="row g-4 justify-content-center">
+
+        <div class="col-md-5">
+            <div class="tarjeta">
+
+                <h4>Empleados</h4>
+
+                <p>
+                    Gestiona la información de los
+                    empleados de la empresa.
+                </p>
+
+                <a asp-controller="Empleados"
+                   asp-action="Index"
+                   class="btn btn-primary">
+                    Administrar empleados
+                </a>
+
+            </div>
+        </div>
+
+        <div class="col-md-5">
+            <div class="tarjeta">
+
+                <h4>Departamentos</h4>
+
+                <p>
+                    Gestiona los departamentos
+                    de la empresa.
+                </p>
+
+                <a asp-controller="Departamentos"
+                   asp-action="Index"
+                   class="btn btn-success">
+                    Administrar departamentos
+                </a>
+
+            </div>
+        </div>
+
     </div>
 
 </div>
